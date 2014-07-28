@@ -205,13 +205,15 @@ Lets shut down 'node2':
     $ sudo docker stop node2
     
     $ sudo docker ps
-    
-    CONTAINER ID        IMAGE                                COMMAND                CREATED             STATUS              PORTS                                                                           NAMES
+
+```    
+CONTAINER ID        IMAGE                                COMMAND                CREATED             STATUS              PORTS                                                                           NAMES
 66e0322b22aa        dnvriend/spray-ba-sharding:latest   /appl/start /bin/bas   16 minutes ago      Up 16 minutes       0.0.0.0:49173->2552/tcp, 0.0.0.0:49174->8080/tcp                                                            node1
 6b7376f5da8e        dnvriend/spray-ba-sharding:latest   /appl/start /bin/bas   16 minutes ago      Up 16 minutes       0.0.0.0:49171->2552/tcp, 0.0.0.0:49172->8080/tcp                                                            node1/seed,node2/seed,seed
 8b75e4bfed66        poklet/cassandra:latest             start 172.17.0.2       18 hours ago        Up 3 hours          22/tcp, 61621/tcp, 7000/tcp, 7001/tcp, 7199/tcp, 8012/tcp, 9042/tcp, 9160/tcp                               cass3,node1/cas3,node1/seed/cas3,node2/cas3,node2/seed/cas3,seed/cas3
 08cc7b31fc38        poklet/cassandra:latest             start 172.17.0.2       18 hours ago        Up 3 hours          22/tcp, 61621/tcp, 7000/tcp, 7001/tcp, 7199/tcp, 8012/tcp, 9042/tcp, 9160/tcp                               cass2,node1/cas2,node1/seed/cas2,node2/cas2,node2/seed/cas2,seed/cas2
 6a02660b6104        poklet/cassandra:latest             start                  18 hours ago        Up 3 hours          22/tcp, 61621/tcp, 7000/tcp, 7001/tcp, 7199/tcp, 8012/tcp, 0.0.0.0:9042->9042/tcp, 0.0.0.0:9160->9160/tcp   cass1,node1/cas1,node1/seed/cas1,node2/cas1,node2/seed/cas1,seed/cas1
+```
 
 As we can see, the 'node2' is now dead and gone. Only 'seed' and 'node1' are running. Let's authenticate again with 'gg'. You will be saying, hang on, 
 the 'gg' user lives on 'node2' and that node is gone, and so is the state, but after I authenticate again I see on the  'seed' node, the following log:
