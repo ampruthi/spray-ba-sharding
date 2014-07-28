@@ -149,28 +149,36 @@ Launch the user interface in your browser, use any of the nodes:
 Click on the User creds tab and create a user, notice that the UserView, the `ClusterSingleton` is created on the oldest
 node, and is polling the view for data:
 
-    ...
-    [INFO] [07/28/2014 12:21:37.278] [ClusterSystem-akka.actor.default-dispatcher-18] [akka.tcp://ClusterSystem@172.17.0.5:2552/user/userViewSingleton/userView] Getting all users
-    [INFO] [07/28/2014 12:21:37.778] [ClusterSystem-akka.actor.default-dispatcher-18] [akka.tcp://ClusterSystem@172.17.0.5:2552/user/userViewSingleton/userView] Getting all users
-    [INFO] [07/28/2014 12:21:38.279] [ClusterSystem-akka.actor.default-dispatcher-17] [akka.tcp://ClusterSystem@172.17.0.5:2552/user/userViewSingleton/userView] Getting all users
-    [INFO] [07/28/2014 12:21:38.780] [ClusterSystem-akka.actor.default-dispatcher-17] [akka.tcp://ClusterSystem@172.17.0.5:2552/user/userViewSingleton/userView] Getting all users
-    ...
+```
+[INFO] [07/28/2014 12:21:37.278] [ClusterSystem-akka.actor.default-dispatcher-18] [akka.tcp://ClusterSystem@172.17.0.5:2552/user/userViewSingleton/userView] Getting all users
+[INFO] [07/28/2014 12:21:37.778] [ClusterSystem-akka.actor.default-dispatcher-18] [akka.tcp://ClusterSystem@172.17.0.5:2552/user/userViewSingleton/userView] Getting all users
+[INFO] [07/28/2014 12:21:38.279] [ClusterSystem-akka.actor.default-dispatcher-17] [akka.tcp://ClusterSystem@172.17.0.5:2552/user/userViewSingleton/userView] Getting all users
+[INFO] [07/28/2014 12:21:38.780] [ClusterSystem-akka.actor.default-dispatcher-17] [akka.tcp://ClusterSystem@172.17.0.5:2552/user/userViewSingleton/userView] Getting all users
+```
 
 Create some users, 'aa' that in my case is created on the 'seed' node:
 
-    [INFO] [07/28/2014 12:22:16.221] [ClusterSystem-akka.actor.default-dispatcher-2] [akka.tcp://ClusterSystem@172.17.0.5:2552/user/sharding/Users/aa] Creating entry: Create(aa,aa)
+```
+[INFO] [07/28/2014 12:22:16.221] [ClusterSystem-akka.actor.default-dispatcher-2] [akka.tcp://ClusterSystem@172.17.0.5:2552/user/sharding/Users/aa] Creating entry: Create(aa,aa)
+```
     
 User 'zz' also on the 'seed' node:
-        
-    [INFO] [07/28/2014 12:23:18.355] [ClusterSystem-akka.actor.default-dispatcher-16] [akka.tcp://ClusterSystem@172.17.0.5:2552/user/sharding/Users/zz] Creating entry: Create(zz,aa)
+
+```        
+[INFO] [07/28/2014 12:23:18.355] [ClusterSystem-akka.actor.default-dispatcher-16] [akka.tcp://ClusterSystem@172.17.0.5:2552/user/sharding/Users/zz] Creating entry: Create(zz,aa)
+````
    
 User 'kk' on 'node1':
-    
-    [INFO] [07/28/2014 12:23:41.852] [ClusterSystem-akka.actor.default-dispatcher-22] [akka.tcp://ClusterSystem@172.17.0.6:2552/user/sharding/Users/kk] Creating entry: Create(kk,aa)
+
+```    
+[INFO] [07/28/2014 12:23:41.852] [ClusterSystem-akka.actor.default-dispatcher-22] [akka.tcp://ClusterSystem@172.17.0.6:2552/user/sharding/Users/kk] Creating entry: Create(kk,aa)
+```
     
 User 'gg' on 'node2':
-    
-    [INFO] [07/28/2014 12:25:31.051] [ClusterSystem-akka.actor.default-dispatcher-20] [akka.tcp://ClusterSystem@172.17.0.7:2552/user/sharding/Users/gg] Creating entry: Create(gg,aa)
+
+```    
+[INFO] [07/28/2014 12:25:31.051] [ClusterSystem-akka.actor.default-dispatcher-20] [akka.tcp://ClusterSystem@172.17.0.7:2552/user/sharding/Users/gg] Creating entry: Create(gg,aa)
+```
     
 They are all added to the `ClusterSingleton` `UserView`:
     
@@ -181,10 +189,12 @@ Now authenticate (I will use httpie for this):
     http -a gg:aa http://192.168.99.99:49166/secure
    
 Use eg. the 'gg' user, that lives on 'node2':
-   
-   [INFO] [07/28/2014 12:28:01.408] [ClusterSystem-akka.actor.default-dispatcher-4] [akka.tcp://ClusterSystem@172.17.0.7:2552/user/sharding/Users/gg] Recovering entry: Created(State(1406546731077,gg,200d52699cf2f2f0008e4a7c10b111a5619d600d542485e63829519900895a3c726b26612e811b4699bc3ea8284922bebcda6c7fca53aa59799afa29862c62c4,3dfceb27e749079162e0270696d15ba1))
-   [INFO] [07/28/2014 12:28:01.426] [ClusterSystem-akka.actor.default-dispatcher-17] [akka.tcp://ClusterSystem@172.17.0.7:2552/user/sharding/Users/gg] Authenticating: Authenticate(Some(UserPass(gg,aa)))
-   [INFO] [07/28/2014 12:28:01.612] [ClusterSystem-akka.actor.default-dispatcher-6] [akka.tcp://ClusterSystem@172.17.0.7:2552/user/sharding/Users/gg] Authenticating: Authenticate(Some(UserPass(gg,aa)))
+
+```   
+[INFO] [07/28/2014 12:28:01.408] [ClusterSystem-akka.actor.default-dispatcher-4] [akka.tcp://ClusterSystem@172.17.0.7:2552/user/sharding/Users/gg] Recovering entry: Created(State(1406546731077,gg,200d52699cf2f2f0008e4a7c10b111a5619d600d542485e63829519900895a3c726b26612e811b4699bc3ea8284922bebcda6c7fca53aa59799afa29862c62c4,3dfceb27e749079162e0270696d15ba1))
+[INFO] [07/28/2014 12:28:01.426] [ClusterSystem-akka.actor.default-dispatcher-17] [akka.tcp://ClusterSystem@172.17.0.7:2552/user/sharding/Users/gg] Authenticating: Authenticate(Some(UserPass(gg,aa)))
+[INFO] [07/28/2014 12:28:01.612] [ClusterSystem-akka.actor.default-dispatcher-6] [akka.tcp://ClusterSystem@172.17.0.7:2552/user/sharding/Users/gg] Authenticating: Authenticate(Some(UserPass(gg,aa)))
+```
 
 As you can see, the `User` is recoved, because it uses Passivation, that means, to save memory, the actor can be unloaded from memory and all messages to that actor will be cached. The Actor
 can be recovered, and will consume memory again, but all the state is there. Next the Authenticate message will be received by the User Actor, and it can execute the authenticate logic.
